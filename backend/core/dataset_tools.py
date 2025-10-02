@@ -5,7 +5,7 @@ Dataset Tools - Merge, deduplicate, and validate datasets
 import json
 import hashlib
 from pathlib import Path
-from typing import Dict, List, Set
+from typing import Dict, List, Set, Optional
 from datetime import datetime
 from difflib import SequenceMatcher
 

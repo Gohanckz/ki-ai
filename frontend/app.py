@@ -13,8 +13,9 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from backend.utils.config import settings
 from backend.utils.logger import setup_logger
 from frontend.components.dataset_manager import create_dataset_manager_tab
-from frontend.components.training_studio import create_training_studio_tab
-from frontend.components.testing_lab import create_testing_lab_tab
+from frontend.components.dataset_review import create_dataset_review_tab
+from frontend.components.training_manager import create_training_manager_tab
+from frontend.components.testing_system import create_testing_system_tab
 from frontend.components.settings_tab import create_settings_tab
 
 logger = setup_logger("ki.frontend")
@@ -87,15 +88,19 @@ def create_app():
             with gr.Tab("📁 Dataset Manager", id="dataset_manager"):
                 create_dataset_manager_tab()
 
-            # Tab 2: Training Studio
-            with gr.Tab("🎓 Training Studio", id="training"):
-                create_training_studio_tab()
+            # Tab 2: Dataset Review
+            with gr.Tab("📝 Dataset Review", id="dataset_review"):
+                create_dataset_review_tab()
 
-            # Tab 3: Testing Lab
-            with gr.Tab("🧪 Testing Lab", id="testing"):
-                create_testing_lab_tab()
+            # Tab 3: Training Manager
+            with gr.Tab("🎓 Training Manager", id="training"):
+                create_training_manager_tab()
 
-            # Tab 4: Settings
+            # Tab 4: Testing System
+            with gr.Tab("🧪 Testing System", id="testing"):
+                create_testing_system_tab()
+
+            # Tab 5: Settings
             with gr.Tab("⚙️ Settings", id="settings"):
                 create_settings_tab()
 
@@ -104,7 +109,7 @@ def create_app():
             gr.Markdown(
                 """
                 ---
-                **KI Platform v0.1.0** | Running locally on `localhost:7860` |
+                **KI Platform v0.3.0** | Running locally on `localhost:7860` |
                 Storage: `{storage_path}` | Ollama: `{ollama_host}`
                 """.format(
                     storage_path=settings.storage_path,
