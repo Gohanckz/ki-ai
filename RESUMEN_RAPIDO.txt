@@ -1,0 +1,195 @@
+╔══════════════════════════════════════════════════════════════╗
+║                                                              ║
+║           📖 KI PLATFORM - RESUMEN RÁPIDO                   ║
+║                                                              ║
+╚══════════════════════════════════════════════════════════════╝
+
+═══════════════════════════════════════════════════════════════
+📁 DÓNDE SE GUARDAN LOS ARCHIVOS
+═══════════════════════════════════════════════════════════════
+
+1. DOCUMENTOS CARGADOS:
+   📍 Temporal: /tmp/gradio/ (se borran al cerrar)
+   📍 Permanente: ./storage/documents/[categoria]/
+
+   Ej: ./storage/documents/ssrf/mi_documento.pdf
+
+2. DATASETS GENERADOS:
+   📍 ./storage/datasets/[nombre].json
+
+   Ej: ./storage/datasets/ssrf_v1.json
+
+3. MODELOS ENTRENADOS (Sesión 4+):
+   📍 ./storage/models/agents/[nombre]/
+
+   Ej: ./storage/models/agents/ssrf_agent_v1/
+
+═══════════════════════════════════════════════════════════════
+⚙️ PARÁMETROS PRINCIPALES
+═══════════════════════════════════════════════════════════════
+
+VULNERABILITY CATEGORY:
+  → Define tipo de vulnerabilidad (SSRF, XSS, SQLi, etc.)
+  → Se usa para etiquetar ejemplos
+
+EXAMPLES PER DOCUMENT:
+  → 1-20 ejemplos por documento
+  → Recomendado: 5 para docs medianos
+  → 10 docs × 5 ejemplos = 50 ejemplos totales
+
+QUALITY THRESHOLD:
+  • High   → Mejor calidad, menos ejemplos
+  • Medium → Balance
+  • Low    → Más ejemplos, calidad variable
+
+DATASET NAME:
+  → Nombre del archivo JSON
+  → Se guarda en: ./storage/datasets/
+
+═══════════════════════════════════════════════════════════════
+🔄 DATASETS: ¿NUEVO O MEJORAR EXISTENTE?
+═══════════════════════════════════════════════════════════════
+
+ESTADO ACTUAL (v0.1.0):
+  ❌ NO mejora datasets existentes automáticamente
+  ❌ NO tiene merge automático
+  ✅ Genera datasets NUEVOS cada vez
+
+SOLUCIÓN TEMPORAL:
+  1. Generar: ssrf_v1.json (50 ejemplos)
+  2. Generar: ssrf_v2.json (30 ejemplos)
+  3. Esperar Sesión 4 para merge automático
+
+  O editar JSON manualmente:
+    nano ./storage/datasets/ssrf_v1.json
+
+PRÓXIMAMENTE (Sesión 4):
+  ✅ Merge automático de datasets
+  ✅ Deduplicación
+  ✅ Review manual en UI
+
+═══════════════════════════════════════════════════════════════
+💬 SISTEMA DE FEEDBACK
+═══════════════════════════════════════════════════════════════
+
+ESTADO ACTUAL (v0.1.0):
+  ❌ NO hay feedback en la UI
+  ❌ NO puedes marcar "bueno/malo"
+  ❌ NO hay re-entrenamiento con correcciones
+
+CÓMO HACER FEEDBACK AHORA (Manual):
+
+  Método 1: Editar JSON
+    1. Generar dataset
+    2. Abrir: nano storage/datasets/ssrf_v1.json
+    3. Editar ejemplos incorrectos
+    4. Guardar
+
+  Método 2: Crear versiones mejoradas
+    1. ssrf_v1.json (inicial)
+    2. ssrf_v2.json (corregido)
+    3. ssrf_final.json (mejor versión)
+
+PRÓXIMAMENTE (Sesión 5-6):
+  ✅ UI para marcar ejemplos buenos/malos
+  ✅ Editar outputs en la interfaz
+  ✅ Re-entrenamiento con feedback
+  ✅ Active Learning loop
+
+═══════════════════════════════════════════════════════════════
+📊 CAPACIDADES ACTUALES
+═══════════════════════════════════════════════════════════════
+
+FUNCIONA AHORA:
+  ✅ Upload documentos (PDF, DOCX, TXT, MD)
+  ✅ Parse automático de documentos
+  ✅ Generación de datasets (simulada)
+  ✅ Guardar datasets en JSON
+  ✅ Interfaz con 4 tabs
+  ✅ Configuración de parámetros
+
+NO FUNCIONA AÚN:
+  ❌ Generación real con Ollama (simulada)
+  ❌ Merge de datasets
+  ❌ Deduplicación
+  ❌ Review/edición en UI
+  ❌ Entrenamiento de modelos
+  ❌ Testing de modelos
+  ❌ Feedback loop
+
+PRÓXIMA SESIÓN (4):
+  • Integrar Ollama real
+  • Merge de datasets
+  • Deduplicación
+  • Quality validation
+
+═══════════════════════════════════════════════════════════════
+🎯 WORKFLOW RECOMENDADO
+═══════════════════════════════════════════════════════════════
+
+PASO 1: Recopilar documentos
+  cp mis_docs/*.pdf ./storage/documents/ssrf/
+
+PASO 2: Generar dataset en UI
+  • Upload docs
+  • Parse Documents
+  • Configure: Category=SSRF, Examples=5, Quality=High
+  • Generate Dataset
+  • Save: "ssrf_initial"
+
+PASO 3: Revisar manualmente
+  nano ./storage/datasets/ssrf_initial.json
+  # Editar ejemplos malos
+
+PASO 4: Generar más batches
+  ssrf_batch2.json, ssrf_batch3.json...
+
+PASO 5: Esperar Sesión 4
+  Merge automático → ssrf_final.json
+
+═══════════════════════════════════════════════════════════════
+🗂️ ESTRUCTURA DE STORAGE
+═══════════════════════════════════════════════════════════════
+
+storage/
+├── documents/          ← Tus docs fuente
+│   ├── ssrf/
+│   ├── xss/
+│   └── sqli/
+│
+├── datasets/           ← Datasets generados
+│   ├── ssrf_v1.json
+│   └── xss_initial.json
+│
+├── models/             ← Modelos entrenados (futuro)
+│   └── agents/
+│
+└── logs/               ← Logs del sistema
+    ├── training/
+    └── generation/
+
+═══════════════════════════════════════════════════════════════
+💡 TIPS IMPORTANTES
+═══════════════════════════════════════════════════════════════
+
+1. Los archivos subidos con drag&drop son TEMPORALES
+   → Copia a ./storage/documents/ si quieres conservarlos
+
+2. Generación está SIMULADA por ahora
+   → Sesión 4 tendrá Ollama real
+
+3. Para mejorar datasets: EDITAR JSON manualmente
+   → O esperar merge tool en Sesión 4
+
+4. Feedback manual: Edita el JSON del dataset
+   → UI de feedback viene en Sesión 5
+
+5. Documentación completa:
+   → cat GUIA_COMPLETA_USO.md
+
+═══════════════════════════════════════════════════════════════
+
+Ver guía completa: cat GUIA_COMPLETA_USO.md
+Servidor corriendo en: http://localhost:7860
+
+═══════════════════════════════════════════════════════════════

@@ -1,0 +1,84 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment variables
+.env
+.env.local
+
+# Logs
+*.log
+logs/
+storage/logs/
+
+# Storage (datos sensibles)
+storage/documents/
+storage/datasets/
+storage/models/
+storage/databases/
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Training outputs
+wandb/
+tensorboard/
+checkpoints/
+outputs/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Gradio temp
+gradio_cached_examples/
+flagged/
+
+# Keep structure
+!storage/.gitkeep
+!storage/documents/.gitkeep
+!storage/datasets/.gitkeep
+!storage/models/.gitkeep
+!storage/logs/.gitkeep

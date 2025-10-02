@@ -1,0 +1,32 @@
+# Dependencias adicionales para KI (no instaladas en venv base)
+# El venv existente ya tiene: torch, transformers, peft, pydantic
+
+# Framework UI y API
+gradio==4.12.0
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+
+# Settings management
+pydantic-settings==2.1.0
+
+# LLM Local
+ollama==0.1.6
+
+# Document Processing adicional
+pdfplumber==0.10.3
+python-markdown==3.5.1
+langchain==0.1.5
+langchain-community==0.0.19
+
+# Vector Store
+chromadb==0.4.22
+
+# Monitoring adicional
+tensorboard==2.15.1
+gpustat==1.1.1
+nvidia-ml-py==12.535.133
+plotly==5.18.0
+
+# Utilities adicionales
+rich==13.7.0
+aiofiles==23.2.1
